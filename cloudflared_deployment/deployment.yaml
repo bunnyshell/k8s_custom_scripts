@@ -57,5 +57,5 @@ spec:
             secretName: tunnel-creds
           name: creds
         - configMap:
-            name: tunnel-api-zt
+            name: tunnel-config
           name: config
