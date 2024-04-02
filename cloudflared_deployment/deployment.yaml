@@ -4,7 +4,6 @@ metadata:
   labels:
     tunnel: api-zt
   name: tunnel-api-zt
-  namespace: cloudflared
 spec:
   replicas: 3
   selector:
