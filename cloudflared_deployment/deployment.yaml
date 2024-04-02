@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    tunnel: api-zt
+    app: cf-tunnel
   name: tunnel-api-zt
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      tunnel: api-zt
+      app: cf-tunnel
   strategy:
     rollingUpdate:
       maxSurge: 0
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        tunnel: api-zt
+        app: cf-tunnel
     spec:
       containers:
         - args:
@@ -24,22 +24,17 @@ spec:
             - --config
             - /opt/zt/config/config.yaml
             - run
-          env:
-            - name: GOMAXPROCS
-              value: "2"
-            - name: TZ
-              value: UTC
           image: cloudflare/cloudflared:latest
           livenessProbe:
             failureThreshold: 1
             httpGet:
               path: /ready
-              port: 8081
+              port: 2000
             initialDelaySeconds: 10
             periodSeconds: 10
           name: tunnel
           ports:
-            - containerPort: 8081
+            - containerPort: 2000
               name: http-metrics
           resources:
             limits:
