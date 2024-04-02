@@ -10,7 +10,6 @@ data:
   config.yaml: |
     # Name of the tunnel you want to run
     tunnel: change-tunnel-name
-    # credentials-file: /etc/cloudflared/creds/credentials.json
     credentials-file: /opt/zt/creds/creds.json
     
     # Serves the metrics server under /metrics and the readiness server under /ready
